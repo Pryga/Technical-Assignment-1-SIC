@@ -1,4 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask
+from flask import request
+from flask import jsonify
+
 
 app = Flask(__name__)
 
@@ -6,13 +9,11 @@ app = Flask(__name__)
 def receive_data():
     data = request.get_json()
     if 'smoke_detected' in data:
-        smoke_detected = data['smoke_detected']
-        print(f"Received smoke detected: {smoke_detected}")
-
-        # Anda dapat menambahkan logika untuk menangani data sensor di sini
+        smoke_detected = data['deteksi_asap']
+        print(f"Received smoke detected: {deteksi_asap}")
 
         response = {
-            "status": "success",
+            "status": "Berhasil",
             "message": "Data received",
             "smoke_detected": smoke_detected
         }
@@ -20,7 +21,7 @@ def receive_data():
     else:
         response = {
             "status": "fail",
-            "message": "Invalid data"
+            "message": "Data Salah"
         }
         return jsonify(response), 400
 
